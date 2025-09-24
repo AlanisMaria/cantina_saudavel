@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantina Saudável v2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app">
+
+        <div id="role-selection-screen" class="screen active">
+            <header class="main-header">
+                <div>
+                    <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                    <span>Secretaria da Educação</span>
+                </div>
+                <img src="https://i.imgur.com/2a23J63.png" alt="Logo Cantina" class="logo-cantina">
+            </header>
+            <main class="content-center">
+                <h1>Cantina saudável</h1>
+                <div class="role-buttons">
+                    <button class="role-btn" data-target="aluno-login-screen">
+                        <i class="fas fa-user"></i> Aluno
+                    </button>
+                    <button class="role-btn" data-target="adm-login-screen">
+                        <i class="fas fa-user-cog"></i> ADM
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <div id="aluno-login-screen" class="screen">
+             <main class="content-center login-container">
+                <h2>Bem-vindo aluno</h2>
+                <input type="text" placeholder="@escola" value="aluno@escola.com">
+                <input type="password" placeholder="Senha" value="123">
+                <button class="login-submit-btn" data-role="aluno">enviar</button>
+            </main>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+
+        <div id="adm-login-screen" class="screen">
+            <main class="content-center login-container">
+                <h2>Bem-vindo ADM</h2>
+                <input type="text" placeholder="Cpf" value="12345678900">
+                <input type="password" placeholder="Senha" value="admin123">
+                <button class="login-submit-btn" data-role="adm">enviar</button>
+            </main>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+
+        <div id="cardapio-screen" class="screen">
+            <header class="app-header">
+                 <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <div class="header-icons">
+                    <button id="cart-btn" class="icon-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </button>
+                    <button class="icon-btn logout-btn"><i class="fas fa-user"></i></button>
+                </div>
+            </header>
+            <main>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="pesquisar">
+                </div>
+                <div id="cardapio-list"></div>
+                 <div class="featured-image">
+                    <img src="https://i.imgur.com/EPlgS23.jpeg" alt="Comida Saudável">
+                </div>
+            </main>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+        
+        <div id="cart-screen" class="screen">
+            <header class="app-header">
+                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <button class="icon-btn logout-btn"><i class="fas fa-user"></i></button>
+            </header>
+            <main class="cart-container">
+                <div id="cart-items-container"></div>
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>total:</span>
+                        <span id="cart-total-price">R$0,00</span>
+                    </div>
+                     <button id="checkout-btn">finalizar</button>
+                </div>
+            </main>
+            <button class="icon-btn trash-btn" id="clear-cart-btn"><i class="fas fa-trash"></i></button>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+
+        <div id="adm-dashboard-screen" class="screen">
+            <header class="app-header">
+                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <nav class="adm-nav">
+                    <a href="#" class="adm-nav-link active" data-target="adm-dashboard-screen">Pedidos</a>
+                    <a href="#" class="adm-nav-link" data-target="adm-items-screen">Itens</a>
+                </nav>
+                <button class="icon-btn logout-btn"><i class="fas fa-user-cog"></i></button>
+            </header>
+            <main class="dashboard" id="pedidos-dashboard">
+                <div id="pedidos-do-dia" class="order-column">
+                    <h3>pedidos do dia</h3>
+                    <div class="order-list"></div>
+                </div>
+                <div id="em-preparacao" class="order-column">
+                    <h3>em preparação</h3>
+                    <div class="order-list"></div>
+                </div>
+                <div id="entregue" class="order-column">
+                    <h3>entregue</h3>
+                    <div class="order-list"></div>
+                </div>
+            </main>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+
+        <div id="adm-items-screen" class="screen">
+            <header class="app-header">
+                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <nav class="adm-nav">
+                    <a href="#" class="adm-nav-link" data-target="adm-dashboard-screen">Pedidos</a>
+                    <a href="#" class="adm-nav-link active" data-target="adm-items-screen">Itens</a>
+                </nav>
+                <button class="icon-btn logout-btn"><i class="fas fa-user-cog"></i></button>
+            </header>
+            <main class="dashboard-items">
+                <div class="item-management-col">
+                    <h3>Editar preço</h3>
+                    <div class="item-list" id="edit-items-list"></div>
+                    <button class="save-btn" id="save-prices-btn">Salvar</button>
+                </div>
+                <div class="item-management-col">
+                    <h3>Adicionar produtos</h3>
+                    <div class="item-list" id="add-items-list">
+                        </div>
+                    <button class="save-btn" id="add-product-btn">Salvar</button>
+                </div>
+            </main>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+        </div>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>

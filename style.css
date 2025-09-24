@@ -1,0 +1,194 @@
+:root {
+    --primary-color: #63C5B8;
+    --background-color: #DDE6E8;
+    --container-bg-color: #FFFFFF;
+    --font-color: #333;
+    --header-bg: #E8F0F2;
+    --font-family: 'Nunito', sans-serif;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #f0f2f5; /* Fundo ligeiramente diferente para desktop */
+    color: var(--font-color);
+}
+
+/* Base do App - Estilo Mobile-First */
+#app {
+    width: 100%;
+    max-width: 420px; /* Largura máxima para visualização mobile */
+    height: 100vh; /* Ocupa a altura inteira em mobile */
+    background-color: var(--background-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto; /* Centraliza na tela do computador */
+}
+
+/* Gerenciamento de Telas */
+.screen { display: none; width: 100%; height: 100%; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* Cabeçalhos */
+.main-header, .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+.logo-parana { height: 40px; }
+.logo-cantina { height: 50px; }
+.header-icons { display: flex; align-items: center; gap: 15px; }
+
+/* Conteúdo Principal */
+main { flex-grow: 1; overflow-y: auto; padding: 20px; }
+.content-center { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; }
+
+h1, h2 { text-align: center; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+
+/* Seleção de Perfil & Login */
+.role-btn {
+    padding: 20px 40px; border: none; border-radius: 15px; font-size: 1.2rem;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: white; transition: transform 0.2s;
+}
+.role-btn:hover { transform: scale(1.05); }
+.role-btn:first-child { background-color: #89CFF0; }
+.role-btn:last-child { background: linear-gradient(to right, #98FB98, #63C5B8); }
+.login-container input, .login-container button {
+    width: 80%; padding: 15px; border: none; border-radius: 25px; font-size: 1.1rem; text-align: center;
+}
+.login-container button { background-color: var(--primary-color); color: white; cursor: pointer; }
+
+/* Cardápio */
+#cardapio-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cardapio-item {
+    background-color: var(--container-bg-color); border-radius: 15px;
+    padding: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.cardapio-item img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; }
+.cardapio-item h4 { margin: 10px 0 5px; }
+.cardapio-item .price { font-weight: bold; color: var(--primary-color); }
+.cardapio-item button {
+    width: 100%; padding: 8px; margin-top: 10px; border: none; border-radius: 20px;
+    background-color: var(--primary-color); color: white; cursor: pointer;
+}
+.search-bar input {
+    width: 100%; padding: 15px; border: none; border-radius: 25px;
+    font-size: 1.1rem; text-align: center; margin-bottom: 20px;
+}
+.featured-image { margin-top: 20px; }
+.featured-image img { width: 100%; border-radius: 15px; }
+
+/* Carrinho */
+.cart-container { display: flex; flex-direction: column; height: 100%; padding: 0; }
+#cart-items-container {
+    flex-grow: 1; background-color: white; border-radius: 15px;
+    margin: 20px; padding: 20px; overflow-y: auto;
+}
+.cart-item-row { display: grid; grid-template-columns: 3fr 2fr 1fr 2fr; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+.cart-footer { padding: 0 20px 20px; }
+.cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; }
+#checkout-btn { width: 100%; padding: 15px; border-radius: 15px; border: none; background-color: var(--primary-color); color: white; font-size: 1.1rem; cursor: pointer; }
+
+/* Botões Universais */
+.icon-btn { background: none; border: none; cursor: pointer; font-size: 1.5rem; position: relative; color: var(--font-color); }
+.back-btn {
+    position: absolute; bottom: 20px; right: 20px; width: 50px; height: 50px;
+    border-radius: 50%; border: none; background-color: var(--primary-color); color: white;
+    font-size: 1.5rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;
+}
+.trash-btn { position: absolute; bottom: 20px; left: 20px; font-size: 2rem; }
+#cart-count {
+    position: absolute; top: -5px; right: -10px; background-color: red; color: white;
+    font-size: 0.8rem; border-radius: 50%; width: 20px; height: 20px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* Navegação e Dashboard do ADM */
+.adm-nav { display: flex; gap: 20px; }
+.adm-nav-link { text-decoration: none; color: var(--font-color); padding: 5px 0; border-bottom: 2px solid transparent; }
+.adm-nav-link.active { border-bottom-color: var(--primary-color); font-weight: bold; }
+.dashboard, .dashboard-items { display: flex; flex-direction: column; gap: 15px; padding: 15px; }
+.order-column, .item-management-col {
+    background-color: white; border-radius: 15px; padding: 15px; width: 100%;
+}
+.order-column h3, .item-management-col h3 { text-align: center; margin-bottom: 10px; font-weight: normal; }
+.order-list { display: flex; flex-direction: column; gap: 10px; }
+.order-card { background-color: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee; }
+.order-card-actions { margin-top: 8px; display: flex; gap: 8px; }
+.order-card-actions button {
+    font-size: 0.8rem; padding: 5px 8px; border: none; border-radius: 5px;
+    cursor: pointer; color: white;
+}
+.btn-prepare { background-color: #FFA500; }
+.btn-deliver { background-color: #32CD32; }
+
+/* ADM - Gerenciamento de Itens */
+.item-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+.edit-item, .add-item-row { display: grid; grid-template-columns: 3fr 2fr auto; align-items: center; gap: 10px; }
+.edit-item input, .add-item-row input {
+    border: 1px solid #ddd; border-radius: 5px; padding: 5px; width: 100%;
+}
+.save-btn {
+    width: 100%; padding: 10px; border: none; border-radius: 20px;
+    background-color: var(--primary-color); color: white; cursor: pointer;
+}
+
+/* ------------------------------------------- */
+/* --- LAYOUT REATIVO PARA COMPUTADOR (DESKTOP) --- */
+/* ------------------------------------------- */
+@media (min-width: 768px) {
+    #app {
+        max-width: 1200px; /* Largura máxima maior para desktop */
+        height: 90vh; /* Altura ajustável */
+        margin: 5vh auto; /* Centraliza verticalmente */
+    }
+
+    /* Cardápio com mais colunas */
+    #cardapio-list {
+        /* Cria colunas responsivas: preenche o espaço com colunas de no mínimo 180px */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    #cardapio-screen main {
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Divide a tela do cardápio em duas seções */
+        gap: 20px;
+    }
+    .featured-image {
+        margin-top: 0;
+        align-self: center;
+    }
+
+    /* Dashboard de Pedidos do ADM em colunas lado a lado */
+    .dashboard {
+        flex-direction: row; /* Coloca as colunas de pedidos uma ao lado da outra */
+        align-items: flex-start;
+    }
+    .order-column {
+        flex: 1; /* Faz cada coluna ocupar um terço do espaço */
+    }
+
+    /* Dashboard de Itens do ADM lado a lado */
+    .dashboard-items {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .item-management-col {
+        flex: 1; /* Faz cada coluna ocupar metade do espaço */
+    }
+}
