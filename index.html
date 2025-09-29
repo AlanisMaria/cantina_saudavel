@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cantina Saudável v2</title>
+    <title>Cantina Saudável</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    
+<!--Tela principal-->
     <div id="app">
 
         <div id="role-selection-screen" class="screen active">
@@ -35,32 +36,34 @@
                 </div>
             </main>
         </div>
-
+<!--Tela de login do aluno-->
         <div id="aluno-login-screen" class="screen">
              <main class="content-center login-container">
                 <h2>Bem-vindo aluno</h2>
-                <input type="text" placeholder="@escola" value="aluno@escola.com">
-                <input type="password" placeholder="Senha" value="123">
-                <button class="login-submit-btn" data-role="aluno">enviar</button>
+                <input type="text" id="@escola" placeholder="@escola" required>
+                <input type="password" id="Senha" placeholder="Senha" required>
+                <button class="login-submit-btn" data-role="aluno">Enviar</button>
             </main>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
         </div>
-
+<!--Tela de login do adm-->
         <div id="adm-login-screen" class="screen">
             <main class="content-center login-container">
                 <h2>Bem-vindo ADM</h2>
-                <input type="text" id="Cpf" placeholder="Cpf" value="12345678900">
-                <input type="text" id="Senha" placeholder="Senha">
-                <button class="login-submit-btn" data-role="adm">enviar</button>
+                <input type="text" id="Cpf" placeholder="Cpf" required>
+                <input type="password" id="Senha" placeholder="Senha" required>
+                <button class="login-submit-btn" data-role="adm">Enviar</button>
             </main>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
         </div>
-
+<!--Tela principal aluno-->
         <div id="cardapio-screen" class="screen">
             <header class="app-header">
-                 <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <img src="imagem/cantina.png" alt="Aluno" class="logo-cantina">
+                <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                 <div class="header-icons">
                     <button id="cart-btn" class="icon-btn">
+                        <img src="imagem/carrinho.png" alt="Carrinho" class="logo-carrinho" width="40" height="40">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-count">0</span>
                     </button>
@@ -69,38 +72,38 @@
             </header>
             <main>
                 <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="pesquisar">
+                    <input type="text" id="search-input" placeholder="Pesquisar">
                 </div>
                 <div id="cardapio-list"></div>
                  <div class="featured-image">
-                    <img src="https://i.imgur.com/EPlgS23.jpeg" alt="Comida Saudável">
+                    <img src="imagem/salada.jpeg" alt="Comida Saudável">
                 </div>
             </main>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
         </div>
-        
+<!--Tela do carrinho-->        
         <div id="cart-screen" class="screen">
             <header class="app-header">
-                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                 <button class="icon-btn logout-btn"><i class="fas fa-user"></i></button>
             </header>
             <main class="cart-container">
                 <div id="cart-items-container"></div>
                 <div class="cart-footer">
                     <div class="cart-total">
-                        <span>total:</span>
+                        <span>Total:</span>
                         <span id="cart-total-price">R$0,00</span>
                     </div>
-                     <button id="checkout-btn">finalizar</button>
+                     <button id="checkout-btn">Finalizar</button>
                 </div>
             </main>
             <button class="icon-btn trash-btn" id="clear-cart-btn"><i class="fas fa-trash"></i></button>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
         </div>
-
+<!--Tela principal adm-->
         <div id="adm-dashboard-screen" class="screen">
             <header class="app-header">
-                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                 <nav class="adm-nav">
                     <a href="#" class="adm-nav-link active" data-target="adm-dashboard-screen">Pedidos</a>
                     <a href="#" class="adm-nav-link" data-target="adm-items-screen">Itens</a>
@@ -109,24 +112,24 @@
             </header>
             <main class="dashboard" id="pedidos-dashboard">
                 <div id="pedidos-do-dia" class="order-column">
-                    <h3>pedidos do dia</h3>
+                    <h3>Pedidos do dia</h3>
                     <div class="order-list"></div>
                 </div>
                 <div id="em-preparacao" class="order-column">
-                    <h3>em preparação</h3>
+                    <h3>Em preparação</h3>
                     <div class="order-list"></div>
                 </div>
                 <div id="entregue" class="order-column">
-                    <h3>entregue</h3>
+                    <h3>Entregue</h3>
                     <div class="order-list"></div>
                 </div>
             </main>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
         </div>
-
+<!--Tela de edição adm-->
         <div id="adm-items-screen" class="screen">
             <header class="app-header">
-                <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                 <nav class="adm-nav">
                     <a href="#" class="adm-nav-link" data-target="adm-dashboard-screen">Pedidos</a>
                     <a href="#" class="adm-nav-link active" data-target="adm-items-screen">Itens</a>
@@ -146,7 +149,8 @@
                     <button class="save-btn" id="add-product-btn">Salvar</button>
                 </div>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="back-btn"><i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 
     </div>

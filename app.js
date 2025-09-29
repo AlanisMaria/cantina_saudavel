@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Se for a primeira vez que o app abre, cria um cardápio inicial
     if (!DB.getCardapio()) {
         const initialCardapio = [
-            { id: 1, nome: "Salada de Frutas", preco: 6.00, img: "https://i.imgur.com/T0n2q5d.jpeg" },
-            { id: 2, nome: "Suco de Jambo", preco: 3.00, img: "https://i.imgur.com/kFLk5Yk.jpeg" },
-            { id: 3, nome: "Brownie Zero Açúcar", preco: 5.50, img: "https://i.imgur.com/5DE2i3L.jpeg" },
-            { id: 4, nome: "Cookies Fitness", preco: 4.00, img: "https://i.imgur.com/mJ5T4pZ.jpeg" },
+            { id: 1, nome: "Salada de Frutas", preco: 6.00},
+            { id: 2, nome: "Suco de Jambo", preco: 3.00},
+            { id: 3, nome: "Brownie Zero Açúcar", preco: 5.50},
+            { id: 4, nome: "Cookies Fitness", preco: 4.00},
         ];
         DB.saveCardapio(initialCardapio);
     }
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="${item.img}" alt="${item.nome}">
                     <h4>${item.nome}</h4>
                     <p class="price">R$${item.preco.toFixed(2)}</p>
-                    <button class="add-to-cart-btn" data-id="${item.id}">Adicionar</button>
+                    <button class="add-to-cart-btn" data-id="${item.id}"> Adicionar </button>
                 </div>`;
         });
     };
