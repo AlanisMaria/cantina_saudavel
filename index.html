@@ -16,18 +16,20 @@
         <div id="role-selection-screen" class="screen active">
             <header class="main-header">
                 <div>
-                    <img src="https://i.imgur.com/gAm9N2u.png" alt="Logo Paraná" class="logo-parana">
+                    <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                     <span>Secretaria da Educação</span>
                 </div>
-                <img src="https://i.imgur.com/2a23J63.png" alt="Logo Cantina" class="logo-cantina">
+                <img src="imagem/cantina.png" alt="Logo Cantina" class="logo-cantina">
             </header>
             <main class="content-center">
                 <h1>Cantina saudável</h1>
                 <div class="role-buttons">
                     <button class="role-btn" data-target="aluno-login-screen">
+                        <img src="imagem/aluno.png" alt="Aluno" class="logo-aluno" width="150" height="150">
                         <i class="fas fa-user"></i> Aluno
                     </button>
                     <button class="role-btn" data-target="adm-login-screen">
+                        <img src="imagem/adm.png" alt="Adm" class="logo-adm" width="100" height="100">
                         <i class="fas fa-user-cog"></i> ADM
                     </button>
                 </div>
@@ -47,8 +49,8 @@
         <div id="adm-login-screen" class="screen">
             <main class="content-center login-container">
                 <h2>Bem-vindo ADM</h2>
-                <input type="text" placeholder="Cpf" value="12345678900">
-                <input type="password" placeholder="Senha" value="admin123">
+                <input type="text" id="Cpf" placeholder="Cpf" value="12345678900">
+                <input type="text" id="Senha" placeholder="Senha">
                 <button class="login-submit-btn" data-role="adm">enviar</button>
             </main>
             <button class="back-btn"><i class="fas fa-undo-alt"></i></button>

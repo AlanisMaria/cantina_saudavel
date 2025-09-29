@@ -192,3 +192,34 @@ h2 { font-size: 2rem; }
         flex: 1; /* Faz cada coluna ocupar metade do espaço */
     }
 }
+
+.role-buttons {
+    display: flex;
+    justify-content: space-around; /* Distribui o espaço entre os botões */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 30px;
+}
+
+.role-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 4px; /* Reduzido de 10px para 4px para um formato quase reto, mas suave */
+    cursor: pointer;
+    background-color: #e0f7fa;
+    color: #000000;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    width: 45%; /* Mantém a largura para que fiquem lado a lado */
+    height: 190px; /* Definindo uma altura fixa (opcional) */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adicionado sombra para profundidade */
+}
+.role-btn:hover {
+    background-color: #b2ebf2;
+}
+
