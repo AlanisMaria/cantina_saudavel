@@ -223,3 +223,14 @@ h2 { font-size: 2rem; }
     background-color: #b2ebf2;
 }
 
+
+/* Estiliza os formulários de login do aluno e ADM para criar espaçamento */
+#aluno-login-form,
+#adm-login-form {
+    display: flex;          /* 1. Ativa o layout flexível */
+    flex-direction: column; /* 2. Empilha os itens na vertical (um em cima do outro) */
+    width: 80%;             /* 3. Faz o formulário ocupar a mesma largura que os inputs tinham */
+    
+    /* 4. A MÁGICA ACONTECE AQUI: Adiciona um espaço de 15px entre cada item do formulário */
+    gap: 15px;
+}

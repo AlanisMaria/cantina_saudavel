@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. SIMULAÇÃO DO BANCO DE DADOS E ESTADO INICIAL ---
-    // Objeto para centralizar a manipulação de dados no localStorage
     const DB = {
         getCardapio: () => JSON.parse(localStorage.getItem('cardapio')),
         saveCardapio: (cardapio) => localStorage.setItem('cardapio', JSON.stringify(cardapio)),
@@ -10,80 +9,77 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCart: (cart) => localStorage.setItem('cart', JSON.stringify(cart)),
     };
 
-    // Se for a primeira vez que o app abre, cria um cardápio inicial
+    // Cardápio inicial - Corrigido para ser mais robusto
     if (!DB.getCardapio()) {
         const initialCardapio = [
-            { id: 1, nome: "Salada de Frutas", preco: 6.00},
-            { id: 2, nome: "Suco de Jambo", preco: 3.00},
-            { id: 3, nome: "Brownie Zero Açúcar", preco: 5.50},
-            { id: 4, nome: "Cookies Fitness", preco: 4.00},
+            { id: 1, nome: "Salada de Frutas", preco: 6.00, img: "imagem/salada-de-frutas.jpg" },
+            { id: 2, nome: "Suco de Jambo", preco: 3.00, img: "imagem/suco.jpg" },
+            { id: 3, nome: "Brownie Zero Açúcar", preco: 5.50, img: "imagem/brownie.jpg" },
+            { id: 4, nome: "Cookies Fitness", preco: 4.00, img: "imagem/cookies.jpg" },
         ];
         DB.saveCardapio(initialCardapio);
     }
 
-    // Array para guardar o histórico de telas e permitir a função "Voltar"
     let screenHistory = ['role-selection-screen'];
 
     // --- 2. GERENCIAMENTO DE NAVEGAÇÃO ---
-    // Função central para trocar de tela
     const navigateTo = (screenId, isBack = false) => {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
         
-        // Se não for uma navegação "para trás", adiciona a nova tela ao histórico
         if (!isBack) {
             screenHistory.push(screenId);
         }
     };
 
-    // Um único "escutador" de eventos no corpo do documento para gerenciar todos os cliques
+    // Listener de clique geral, mais seguro
     document.body.addEventListener('click', (e) => {
-        // Navegação principal (botões com o atributo 'data-target')
         const targetScreen = e.target.closest('[data-target]')?.dataset.target;
         if (targetScreen) {
             e.preventDefault();
             navigateTo(targetScreen);
-            // Renderiza o conteúdo da tela de ADM ao navegar para ela
             if(targetScreen === 'adm-dashboard-screen') renderAdminDashboard();
             if(targetScreen === 'adm-items-screen') renderAdminItems();
         }
 
-        // Lógica do botão "Voltar"
         if (e.target.closest('.back-btn')) {
             if (screenHistory.length > 1) {
-                screenHistory.pop(); // Remove a tela atual do histórico
-                navigateTo(screenHistory[screenHistory.length - 1], true); // Navega para a tela anterior
+                screenHistory.pop();
+                navigateTo(screenHistory[screenHistory.length - 1], true);
             }
         }
 
-        // Lógica do botão "Logout"
         if (e.target.closest('.logout-btn')) {
-            screenHistory = ['role-selection-screen']; // Reseta o histórico
+            screenHistory = ['role-selection-screen'];
             navigateTo('role-selection-screen');
         }
     });
 
-   // --- LÓGICA DE LOGIN COM VALIDAÇÃO ---
-// Formulário do Aluno
-document.getElementById('aluno-login-form').addEventListener('submit', (event) => {
-    event.preventDefault(); // Impede o recarregamento da página
+    // ==================================================================
+    //  NOVA LÓGICA DE LOGIN - A SOLUÇÃO DEFINITIVA
+    // ==================================================================
+    document.querySelectorAll('.login-submit-btn').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            const form = btn.closest('form');
     
-    // O código abaixo só será executado se os campos estiverem preenchidos
-    renderCardapio();
-    navigateTo('cardapio-screen');
-});
-
-// Formulário do ADM
-document.getElementById('adm-login-form').addEventListener('submit', (event) => {
-    event.preventDefault(); // Impede o recarregamento da página
-
-    // O código abaixo só será executado se os campos estiverem preenchidos
-    renderAdminDashboard();
-    navigateTo('adm-dashboard-screen');
-});
+            if (form.checkValidity()) {
+                event.preventDefault();
+                const role = btn.dataset.role
+    
+                if (role === 'aluno') {
+                    // Se o botão clicado tiver data-role="aluno", executa isto:
+                    renderCardapio();
+                    navigateTo('cardapio-screen');
+                } else if (role === 'adm') {
+                    // Se o botão clicado tiver data-role="adm", executa isto:
+                    renderAdminDashboard();
+                    navigateTo('adm-dashboard-screen');
+                }
+            }
+        });
+    });
 
     // --- 3. LÓGICA DO ALUNO (CARDÁPIO E CARRINHO) ---
-    // Renderiza os itens do cardápio na tela
     const renderCardapio = (filter = '') => {
         const cardapioList = document.getElementById('cardapio-list');
         cardapioList.innerHTML = '';
@@ -91,9 +87,11 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
             item.nome.toLowerCase().includes(filter.toLowerCase())
         );
         cardapio.forEach(item => {
+            // Código mais seguro para a imagem, evita erros se a imagem não existir
+            const imageSrc = item.img || 'imagem/default.png'; 
             cardapioList.innerHTML += `
                 <div class="cardapio-item">
-                    <img src="${item.img}" alt="${item.nome}">
+                    <img src="${imageSrc}" alt="${item.nome}">
                     <h4>${item.nome}</h4>
                     <p class="price">R$${item.preco.toFixed(2)}</p>
                     <button class="add-to-cart-btn" data-id="${item.id}"> Adicionar </button>
@@ -101,32 +99,27 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
         });
     };
 
-    // Filtra o cardápio conforme o usuário digita na barra de busca
-    document.getElementById('search-input').addEventListener('input', (e) => renderCardapio(e.target.value));
+    // (O resto do seu código continua exatamente igual daqui para baixo)
 
-    // Adiciona um item ao carrinho ao clicar no botão "Adicionar"
+    document.getElementById('search-input').addEventListener('input', (e) => renderCardapio(e.target.value));
     document.getElementById('cardapio-list').addEventListener('click', (e) => {
         if (e.target.classList.contains('add-to-cart-btn')) {
             const itemId = parseInt(e.target.dataset.id);
             const cart = DB.getCart();
             const itemInCart = cart.find(item => item.id === itemId);
             if (itemInCart) {
-                itemInCart.quantity++; // Se já existe, só aumenta a quantidade
+                itemInCart.quantity++;
             } else {
-                cart.push({ id: itemId, quantity: 1 }); // Se não, adiciona
+                cart.push({ id: itemId, quantity: 1 });
             }
             DB.saveCart(cart);
             updateCartCount();
         }
     });
-    
-    // Atualiza o contador de itens no ícone do carrinho
     const updateCartCount = () => {
         const cart = DB.getCart();
         document.getElementById('cart-count').textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
     };
-
-    // Renderiza os itens na tela do carrinho
     const renderCart = () => {
         const cartContainer = document.getElementById('cart-items-container');
         let totalPrice = 0;
@@ -139,7 +132,7 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
              cartContainer.innerHTML = `<div class="cart-item-row"><strong>produto</strong><strong>unit.</strong><strong>qtd</strong><strong>preço</strong></div>`;
             cart.forEach(cartItem => {
                 const product = cardapio.find(p => p.id === cartItem.id);
-                if (!product) return; // Pula o item se ele foi removido do cardápio pelo ADM
+                if (!product) return;
                 const itemTotalPrice = product.preco * cartItem.quantity;
                 totalPrice += itemTotalPrice;
                 cartContainer.innerHTML += `
@@ -153,47 +146,37 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
         }
         document.getElementById('cart-total-price').textContent = `R$${totalPrice.toFixed(2)}`;
     };
-    
-    // Navega para a tela do carrinho e a renderiza
     document.getElementById('cart-btn').addEventListener('click', () => {
         renderCart();
         navigateTo('cart-screen');
     });
-
-    // Limpa o carrinho
     document.getElementById('clear-cart-btn').addEventListener('click', () => {
         DB.saveCart([]);
         updateCartCount();
         renderCart();
     });
-
-    // Finaliza o pedido
     document.getElementById('checkout-btn').addEventListener('click', () => {
         const cart = DB.getCart();
         if (cart.length === 0) return alert("Seu carrinho está vazio!");
         const pedidos = DB.getPedidos();
-        pedidos.push({ id: Date.now(), items: cart, status: 'pendente' }); // Cria um novo pedido
+        pedidos.push({ id: Date.now(), items: cart, status: 'pendente' });
         DB.savePedidos(pedidos);
-        DB.saveCart([]); // Limpa o carrinho
+        DB.saveCart([]);
         updateCartCount();
         alert("Pedido realizado com sucesso!");
         navigateTo('cardapio-screen');
     });
-
     // --- 4. LÓGICA DO ADMINISTRADOR ---
-    // Renderiza o painel de pedidos do ADM
     const renderAdminDashboard = () => {
         const pedidos = DB.getPedidos();
         const cardapio = DB.getCardapio();
-        // Mapeia os status para as colunas corretas
         const lists = {
             pendente: document.querySelector('#pedidos-do-dia .order-list'),
             preparacao: document.querySelector('#em-preparacao .order-list'),
             entregue: document.querySelector('#entregue .order-list')
         };
-        Object.values(lists).forEach(list => list.innerHTML = ''); // Limpa as colunas
+        Object.values(lists).forEach(list => list.innerHTML = '');
 
-        // Preenche as colunas com os pedidos
         pedidos.forEach(order => {
             if (!lists[order.status]) return;
             const itemsHtml = order.items.map(item => {
@@ -210,8 +193,6 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
                 </div>`;
         });
     };
-    
-    // Muda o status de um pedido
     document.getElementById('pedidos-dashboard').addEventListener('click', e => {
         const orderId = e.target.dataset.id;
         if (!orderId) return;
@@ -220,10 +201,8 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
         if (e.target.classList.contains('btn-prepare')) order.status = 'preparacao';
         else if (e.target.classList.contains('btn-deliver')) order.status = 'entregue';
         DB.savePedidos(pedidos);
-        renderAdminDashboard(); // Re-renderiza o painel
+        renderAdminDashboard();
     });
-
-    // Renderiza a tela de gerenciamento de itens
     const renderAdminItems = () => {
         const cardapio = DB.getCardapio();
         const editList = document.getElementById('edit-items-list');
@@ -243,8 +222,6 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
                 <input type="number" id="new-item-price" placeholder="Preço" step="0.50">
             </div>`;
     };
-    
-    // Salva os preços alterados
     document.getElementById('save-prices-btn').addEventListener('click', () => {
         const cardapio = DB.getCardapio();
         document.querySelectorAll('#edit-items-list .edit-item').forEach(itemEl => {
@@ -256,8 +233,6 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
         DB.saveCardapio(cardapio);
         alert('Preços atualizados!');
     });
-    
-    // Adiciona um novo produto
     document.getElementById('add-product-btn').addEventListener('click', () => {
         const name = document.getElementById('new-item-name').value;
         const price = parseFloat(document.getElementById('new-item-price').value);
@@ -267,14 +242,12 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
             id: Date.now(),
             nome: name,
             preco: price,
-            img: 'https://i.imgur.com/WTTB2v8.jpeg' // Imagem padrão para novos itens
+            img: 'imagem/default.png' // Imagem padrão para novos itens
         });
         DB.saveCardapio(cardapio);
         alert('Produto adicionado!');
-        renderAdminItems(); // Atualiza a lista para mostrar o novo item
+        renderAdminItems();
     });
-
-    // Remove um item do cardápio
     document.getElementById('edit-items-list').addEventListener('click', e => {
         if(e.target.closest('.remove-item-btn')) {
             const itemEl = e.target.closest('.edit-item');
@@ -289,6 +262,7 @@ document.getElementById('adm-login-form').addEventListener('submit', (event) => 
     });
 
     // --- 5. INICIALIZAÇÃO DO APP ---
-    updateCartCount(); // Garante que o contador do carrinho esteja correto ao carregar
-    navigateTo('role-selection-screen', true); // Garante que a tela inicial seja a de seleção de perfil
+    updateCartCount();
+    navigateTo('role-selection-screen', true);
 });
+
