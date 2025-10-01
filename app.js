@@ -63,19 +63,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Lógica dos botões de Login
-    document.querySelectorAll('.login-submit-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const role = btn.dataset.role;
-            if (role === 'aluno') {
-                renderCardapio(); // Prepara a tela do cardápio
-                navigateTo('cardapio-screen');
-            } else if (role === 'adm') {
-                renderAdminDashboard(); // Prepara a tela de pedidos do ADM
-                navigateTo('adm-dashboard-screen');
-            }
-        });
-    });
+   // --- LÓGICA DE LOGIN COM VALIDAÇÃO ---
+// Formulário do Aluno
+document.getElementById('aluno-login-form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o recarregamento da página
+    
+    // O código abaixo só será executado se os campos estiverem preenchidos
+    renderCardapio();
+    navigateTo('cardapio-screen');
+});
+
+// Formulário do ADM
+document.getElementById('adm-login-form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o recarregamento da página
+
+    // O código abaixo só será executado se os campos estiverem preenchidos
+    renderAdminDashboard();
+    navigateTo('adm-dashboard-screen');
+});
 
     // --- 3. LÓGICA DO ALUNO (CARDÁPIO E CARRINHO) ---
     // Renderiza os itens do cardápio na tela
