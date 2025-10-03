@@ -13,7 +13,6 @@
     
 <!--Tela principal-->
     <div id="app">
-
         <div id="role-selection-screen" class="screen active">
             <header class="main-header">
                 <div>
@@ -46,7 +45,10 @@
                     <button type="submit" class="login-submit-btn" data-role="aluno">Enviar</button>
                 </form>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 <!--Tela de login do adm-->
         <div id="adm-login-screen" class="screen">
@@ -58,19 +60,26 @@
                     <button type="submit" class="login-submit-btn" data-role="adm">Enviar</button>
                 </form>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 <!--Tela principal aluno-->
         <div id="cardapio-screen" class="screen">
             <header class="app-header">
-                <img src="imagem/cantina.png" alt="Aluno" class="logo-cantina">
+                <img src="imagem/cantina.png" alt="Cantina" class="logo-cantina">
                 <img src="imagem/parana.png" alt="Logo Paraná" class="logo-parana">
                 <div class="header-icons">
                     <button id="cart-btn" class="icon-btn">
+                        <img src="imagem/carrinho.png" alt="Carrinho" class="logo-carrinho" height="50" weight="50">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-count">0</span>
                     </button>
-                    <button class="icon-btn logout-btn"><i class="fas fa-user"></i></button>
+                    <button class="icon-btn logout-btn">
+                        <img src="imagem/aluno.png" alt="Aluno" class="logo-aluno" height="50" weight="50">
+                        <i class="fas fa-user"></i>
+                    </button>
                 </div>
             </header>
             <main>
@@ -82,7 +91,10 @@
                     <img src="imagem/salada.jpeg" alt="Comida Saudável">
                 </div>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 <!--Tela do carrinho-->        
         <div id="cart-screen" class="screen">
@@ -100,8 +112,14 @@
                      <button id="checkout-btn">Finalizar</button>
                 </div>
             </main>
-            <button class="icon-btn trash-btn" id="clear-cart-btn"><i class="fas fa-trash"></i></button>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="icon-btn trash-btn" id="clear-cart-btn">
+                <img src="imagem/lixo.png" alt="Lixo" class="logo-lixo" height="40" weight="40">
+                <i class="fas fa-trash"></i>
+            </button>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 <!--Tela principal adm-->
         <div id="adm-dashboard-screen" class="screen">
@@ -111,7 +129,10 @@
                     <a href="#" class="adm-nav-link active" data-target="adm-dashboard-screen">Pedidos</a>
                     <a href="#" class="adm-nav-link" data-target="adm-items-screen">Itens</a>
                 </nav>
-                <button class="icon-btn logout-btn"><i class="fas fa-user-cog"></i></button>
+                <button class="icon-btn logout-btn">
+                    <img src="imagem/adm.png" alt="ADM" class="logo-adm" height="45" weight="45">
+                    <i class="fas fa-user-cog"></i>
+                </button>
             </header>
             <main class="dashboard" id="pedidos-dashboard">
                 <div id="pedidos-do-dia" class="order-column">
@@ -127,7 +148,10 @@
                     <div class="order-list"></div>
                 </div>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i></button>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
+            </button>
         </div>
 <!--Tela de edição adm-->
         <div id="adm-items-screen" class="screen">
@@ -152,7 +176,9 @@
                     <button class="save-btn" id="add-product-btn">Salvar</button>
                 </div>
             </main>
-            <button class="back-btn"><i class="fas fa-undo-alt"></i>
+            <button class="back-btn">
+                <img src="imagem/volta.png" alt="Voltar" class="logo-voltar" width="20" weight="20">
+                <i class="fas fa-undo-alt"></i>
             </button>
         </div>
 
