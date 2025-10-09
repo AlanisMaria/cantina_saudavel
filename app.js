@@ -212,14 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
             editList.innerHTML += `
                 <div class="edit-item" data-id="${item.id}">
                     <span>${item.nome}</span>
-                    <input type="number" step="0.50" value="${item.preco.toFixed(2)}">
-                    <button class="icon-btn remove-item-btn"><i class="fas fa-trash-alt"></i></button>
-                </div>`;
+                    <input type="number" step="0.50" value="${item.preco.toFixed(2)}" min="0"> 
+                    <button class="icon-btn remove-item-btn"><img src="imagem/lixo.png" alt="Lixo" class="logo-lixo" height="20" weight="20">
+                    <i class="fas fa-trash-alt"></i></button>
+               </div>`;
         });
         addList.innerHTML = `
             <div class="add-item-row">
                 <input type="text" id="new-item-name" placeholder="Nome do produto">
-                <input type="number" id="new-item-price" placeholder="Preço" step="0.50">
+                <input type="number" id="new-item-price" placeholder="Preço" step="0.50" min="0">
             </div>`;
     };
     document.getElementById('save-prices-btn').addEventListener('click', () => {
