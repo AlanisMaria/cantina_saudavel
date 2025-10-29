@@ -4,7 +4,7 @@
     <meta charset="UTF-8">   <!--Define a codificação de caracteres, permitindo o uso de caracteres especiais-->  
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Garante que a página se adapte à largura da página-->
     <title>Cantina Saudável</title>
-    <link rel="manifest" href="./docs/manifest.json">
+    <link rel="manifest" href="/docs/manifest.json">
     <link rel="stylesheet" href="style.css"> <!--Vincula o arquivo CSS-->
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--Estabelece uma conexão com o servidor do Google Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--Estabelece uma conexão com o servidor do Google Fonts-->
@@ -193,7 +193,7 @@
     <script>
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker
-            .register(".docs/service-worker.js", { scope: "./" })
+            .register("./docs/service-worker.js", { scope: "./" })
             .then(reg => console.log("SW ok:", reg.scope))
             .catch(err => console.error("SW erro:", err));
         }
