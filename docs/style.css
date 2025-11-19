@@ -228,9 +228,15 @@ h2 { font-size: 2rem; }
 #aluno-login-form,
 #adm-login-form {
     display: flex;          /* 1. Ativa o layout flexível */
-    flex-direction: column; /* 2. Empilha os itens na vertical (um em cima do outro) */
-    width: 80%;             /* 3. Faz o formulário ocupar a mesma largura que os inputs tinham */
+    flex-direction: column; /* 2. Empilha os itens na vertical */
+    width: 80%;             /* 3. Define a largura do formulário */
+    gap: 15px;              /* 4. Adiciona espaço entre os itens (inputs/botões) */
+    justify-content: center;
+    align-items: center;
+    /* --- ADICIONE ISSO PARA CENTRALIZAR --- */
+    margin-left: auto;
+    margin-right: auto;
     
-    /* 4. A MÁGICA ACONTECE AQUI: Adiciona um espaço de 15px entre cada item do formulário */
-    gap: 15px;
+    
+    /* -------------------------------------- */
 }
