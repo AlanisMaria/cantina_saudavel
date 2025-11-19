@@ -1,10 +1,10 @@
 const CACHE_NAME = 'seu-app-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/main.js',
-  '/icons/icon-192x192.png'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/main.js',
+  './icons/icon-192x192.png'
   // Adicione todos os outros arquivos estáticos aqui
 ];
 
