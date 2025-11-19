@@ -191,12 +191,17 @@
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> <!-- Carrega a biblioteca Font Awesome-->
     <script src="app.js"></script> <!-- Vincula o arquivo app.js para a lógica interativa da aplicação-->
     <script>
-        if ("serviceWorker" in navigator) {
-          navigator.serviceWorker
-            .register("./docs/service-worker.js", { scope: "./" })
-            .then(reg => console.log("SW ok:", reg.scope))
-            .catch(err => console.error("SW erro:", err));
-        }
+      if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js') // Caminho para o seu service worker
+        .then(registration => {
+          console.log('ServiceWorker registrado com sucesso:', registration);
+        })
+        .catch(error => {
+          console.log('Falha ao registrar o ServiceWorker:', error);
+        });
+    });
+  }
       </script>
 </body>
 </html>
